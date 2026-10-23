@@ -34,7 +34,7 @@ code --add-mcp '{"name":"betacade","type":"http","url":"https://api.betacade.com
 | `create_game` | Make a game |
 | `start_build`, `finish_build` | Deploy a build: upload its files, then put it live |
 | `deploy_files`, `edit_files`, `get_files` | No shell (a chat)? Deploy a small build with its files in the call, change one by sending only the edits, and read or search a build |
-| `game_settings` | Builds, who may play each, saves and replays |
+| `game_settings`, `update_build` | A game's builds and settings; change one build's resumable, replayable and who may play it |
 | `who_played` | A game's testers: sessions, play time, errors, how far they got |
 | `session_evidence` | One tester's sessions: errors with stacks, console, feedback, replays |
 | `list_bugs`, `update_bug` | The issue board; move a bug along as you fix it |

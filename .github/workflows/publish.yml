@@ -1,0 +1,19 @@
+# Publishes server.json to the official MCP Registry when a tag vX.Y.Z is pushed.
+# The registry trusts com.betacade/* because betacade.com/.well-known/mcp-registry-auth carries the
+# public half of MCP_REGISTRY_KEY (a repo secret: the Ed25519 private key, hex).
+name: Publish to the MCP Registry
+on:
+  push:
+    tags: ["v*"]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: The tag matches server.json
+        run: test "v$(jq -r .version server.json)" = "$GITHUB_REF_NAME"
+      - name: Install mcp-publisher
+        run: curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+      - name: Sign in as betacade.com
+        run: ./mcp-publisher login http --domain betacade.com --private-key "${{ secrets.MCP_REGISTRY_KEY }}"
+      - run: ./mcp-publisher publish

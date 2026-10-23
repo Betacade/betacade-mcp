@@ -1,0 +1,9 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.betacade/mcp",
+  "title": "Betacade",
+  "description": "Deploy web game builds and read playtests: who played, errors, feedback, bugs.",
+  "version": "1.0.0",
+  "websiteUrl": "https://betacade.com",
+  "remotes": [{ "type": "streamable-http", "url": "https://api.betacade.com/mcp" }]
+}
